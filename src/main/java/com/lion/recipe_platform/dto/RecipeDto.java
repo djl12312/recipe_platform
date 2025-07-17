@@ -7,6 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+
 public class RecipeDto {
     @NotBlank
     private String title;

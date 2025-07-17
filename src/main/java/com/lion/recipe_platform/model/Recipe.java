@@ -1,7 +1,6 @@
 package com.lion.recipe_platform.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.lion.recipe_platform.model.RecipeIngredient;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
