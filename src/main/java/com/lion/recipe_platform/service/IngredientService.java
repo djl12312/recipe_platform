@@ -2,6 +2,7 @@ package com.lion.recipe_platform.service;
 
 import com.lion.recipe_platform.dto.IngredientDto;
 import com.lion.recipe_platform.dto.IngredientResponseDto;
+import com.lion.recipe_platform.model.Ingredient;
 import com.lion.recipe_platform.repository.IngredientRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,12 @@ public class IngredientService {
     private final IngredientRepository ingredientRepository;
 
     public IngredientResponseDto create(IngredientDto dto) {
-        if (ingredientRepository.findByName(dto.getName()).isPresent()) {}
-            throw new IllegalStateException("재료가 이미 존재합니다.");
+        if (ingredientRepository.findByName(dto.getName()).isPresent()) {
+            throw new IllegalStateException("재료가 존재합니다.");
+        }
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName(dto.getName());
+        Ingredient saved = ingredientRepository.save(ingredient);
+        return new IngredientResponseDto(saved.getId(), saved.getName());
     }
 }
